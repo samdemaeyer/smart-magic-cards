@@ -13,6 +13,8 @@ Join Smart by performing a simple magic trick.
   - Make sure the value for each card is visible on the inital render, basically move each card a bit so the card is readable.
   - Add animation.
   - Remove all images and have the cards represented with CSS only.
+  - Uncomment the tests in the `cypress/integration/magic-trick.js` file and make use the tests pass.
+  - Add aditional tests.
   - Add some extra functionality, this is your chance to be creative. 😉
 
 #### Example
@@ -21,7 +23,12 @@ Join Smart by performing a simple magic trick.
 ## Getting Started
 Follow these steps to get the project setup on your machine.
 
-### Fork the repository
+### Clone the repository
+```
+git clone git@github.com:smartpension/smart-magic-cards.git
+```
+_Note:_ You won't have access to commit to this repository. We suggest you download it or fork it.
+
 <img src="assets/fork-example.png" alt="working-example" width="800">
 
 ### Install
@@ -40,3 +47,4 @@ In order to run the tests, run the folowing command.
 ```
 yarn test
 ```
+_Note:_ [Cypress.io](https://www.cypress.io/) is included in the project and all tests will run on Travis CI.

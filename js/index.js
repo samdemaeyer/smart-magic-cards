@@ -1,10 +1,9 @@
 const suit = 'hearts';
 const cardsWrapper = document.querySelector('.cards-wrapper');
 
-// Reusable function to render cards
 function createCards() {
   const cards = [];
-  // Craete an array with objects containing the value and the suit of each card
+  // Create an array with objects containing the value and the suit of each card
   for (let i = 1; i <= 13; i += 1) {
     const cardObject = {
       value: i,
@@ -15,7 +14,6 @@ function createCards() {
 
   // For each dataObject, create a new card and append it to the DOM
   cards.forEach((card, i) => {
-    // setup a variable to add the position for each card
     const positionFromLeft = i * 15;
     const cardElement = document.createElement('div');
     cardElement.setAttribute('data-value', card.value);
@@ -30,8 +28,8 @@ function createButtons() {
   // Your Code
 }
 
-// Function to start the game by clearing the wrapper, creating and appending the buttons
-// and all the cards to the DOM
+// Function to start the game by clearing the wrapper, creating
+// and appending the buttons and all the cards to the DOM
 function startGame() {
   createButtons();
   createCards();

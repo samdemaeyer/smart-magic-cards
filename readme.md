@@ -13,8 +13,8 @@ Join Smart by performing a simple magic trick.
   - Make sure the value for each card is visible on the inital render, basically move each card a bit so the card is readable.
   - Add animation.
   - Remove all images and have the cards represented with CSS only.
-  - Uncomment the tests in the `cypress/integration/magic-trick.js` file and make use the tests pass.
-  - Add aditional tests.
+  - Uncomment the tests in the `cypress/integration/magic-trick.js` file and make sure the tests pass.
+  - Add aditional tests (we like test coverage).
   - Add some extra functionality, this is your chance to be creative. 😉
 
 #### Example

@@ -3,17 +3,18 @@ Join Smart by performing a simple magic trick.
 
 ### Requirements
 - Make sure all 4 suits of cards are rendered. There are 13 cards in each suit (♥,   ♣, ♦, ♠).
+- Make sure the value for each card is visible on the initial render, basically move each card a bit so the card is readable.
 - Add 3 buttons to the flow that will do 3 actions:
   - **Shuffle:** Randomly shuffles all cards.
   - **Show/Hide:** Hide all the cards by adding a class (CSS is already included).
   - **Magic:** Order the cards again by suit.
+- When performing the trick, use the existing cards rather then create new ones.
 
 #### Bonus points
-  - Find a way to automatically create all the classes for the cards: `.hearts-1`, `.hearts-2`, ... , `.spades-13`.
-  - Make sure the value for each card is visible on the initial render, basically move each card a bit so the card is readable.
+  - Find a way to remove duplications in the `cards.scss` file and generate all the classes automatically for the cards: `.hearts-1`, `.hearts-2`, ... , `.spades-13`.
   - Add animation.
-  - Remove all images and have the cards represented with CSS only.
-  - Uncomment the tests in the `cypress/integration/magic-trick.js` file and make sure the tests pass.
+  - Do not use images for the cards, style them with CSS/SCSS only.
+  - Uncomment the tests in the `cypress/integration/magic-trick.js` file and **make sure the tests pass**.
   - Add additional tests (we like test coverage).
   - Add some extra functionality, this is your chance to be creative. 😉
 

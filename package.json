@@ -32,7 +32,7 @@
   "homepage": "https://github.com/smartpension/smart-magic-cards#readme",
   "dependencies": {
     "bootstrap": "^4.5.3",
-    "minimist": "1.2.5"
+    "minimist": "1.2.6"
   },
   "devDependencies": {
     "cypress": "^5.3.0",

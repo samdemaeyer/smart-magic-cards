@@ -36,6 +36,8 @@ Eg. the 8 of hears it picked, now all the 8's are removed from the deck and adde
 
 #### Example
 
+See a working example here: [https://samdemaeyer.github.io/smart-magic-cards](https://samdemaeyer.github.io/smart-magic-cards)
+
 <img src="assets/working-example.gif" alt="working-example">
 
 ## Getting Started

@@ -5,7 +5,7 @@ $card-values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13;
   @each $suit in $suits {
     @each $value in $card-values {
       &.#{$suit}-#{$value} {
-        background-image: url("../assets/cards/#{$suit}-#{$value}.svg");
+        background-image: url('../assets/cards/#{$suit}-#{$value}.svg');
       }
     }
   }
@@ -17,7 +17,13 @@ $card-values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13;
   overflow: scroll;
   margin: 0 2rem;
   border-radius: 10px;
-  
+
+  &.shuffling {
+    .card {
+      left: 0 !important;
+    }
+  }
+
   &.shuffling {
     .card {
       left: 0 !important;
@@ -26,7 +32,7 @@ $card-values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13;
 
   &.hidden {
     .card {
-      background: rgb(0,212,255);
+      background: rgb(0, 212, 255);
       background: radial-gradient(circle, #00d4ff 0%, #090979 65%, #020024 97%);
       border: 1px solid;
       border-radius: 10px;
@@ -39,56 +45,76 @@ $card-values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13;
     }
   }
 }
-  
+
 .card {
   width: 200px;
   height: 300px;
-	padding: 2.25rem;
+  padding: 2.25rem;
   border: 1px solid gray;
   border-radius: 10px;
   background-color: white;
-	display: flex;
-	position: absolute;
-	justify-content: space-around;
+  display: flex;
+  position: absolute;
+  justify-content: space-around;
   align-items: center;
   transition: 1s left;
 
-  &:hover { z-index: 500; }
+  &:hover {
+    z-index: 500;
+    cursor: pointer;
+  }
 
-	.suits {
-		display: flex;
-		flex-direction: column;
+  .suits {
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
     height: 100%;
-	}
+  }
 
-	&.♥, &.♦ { color: $red; }
-  &.♠, &.♣ { color: $black; }
+  &.♥,
+  &.♦ {
+    color: $red;
+  }
+  &.♠,
+  &.♣ {
+    color: $black;
+  }
 
-	.symbol {
-		font-size: 2.25rem;
+  .symbol {
+    font-size: 2.25rem;
 
-    &.big { font-size: 7rem; }
-	}
+    &.big {
+      font-size: 7rem;
+    }
+  }
 
   .corner {
-		font-family: 'Open Sans', sans-serif;
-		position: absolute;
-		top: 10px;
-		left: 10px;
-		font-size: 1.2rem;
+    font-family: 'Open Sans', sans-serif;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.2rem;
 
     .value {
       display: block;
     }
 
-		&.flipped {
-			top: auto;
-			left: auto;
-			bottom: 10px;
-			right: 10px;
-			transform: rotate(180deg);
-		}
+    &.flipped {
+      top: auto;
+      left: auto;
+      bottom: 10px;
+      right: 10px;
+      transform: rotate(180deg);
+    }
   }
-  
+}
+
+.selected-card-wrapper {
+  .selected-cards {
+    height: calc(300px + 4px);
+    width: calc(216px + 4px);
+    border: 2px dashed white;
+    border-radius: 6px;
+    position: relative;
+  }
 }

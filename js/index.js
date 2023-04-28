@@ -1,5 +1,6 @@
 const suits = ['♥', '♠', '♦', '♣'];
 const cardsWrapper = document.querySelector('.cards-wrapper');
+const selectedCardsWrapper = document.querySelector('.selected-cards');
 
 function sortCards(cards) {
   return cards.sort((a, b) => a.getAttribute('data-value') - b.getAttribute('data-value'));
@@ -11,7 +12,6 @@ function reRenderCards(cards) {
     cardsWrapper.appendChild(card);
   });
 }
-
 
 function suitsHtml(card) {
   const suitsRowArray = [];
@@ -43,14 +43,16 @@ function suitsHtml(card) {
     }
     suitsRowArray.push(suits1);
   }
-  return suitsRowArray.map((row) => {
-    const symbols = row.map(() => `<span class="symbol ${isFaceCard ? 'big' : ''}">${card.suit}</span>`).join('');
-    return `
+  return suitsRowArray
+    .map((row) => {
+      const symbols = row.map(() => `<span class="symbol ${isFaceCard ? 'big' : ''}">${card.suit}</span>`).join('');
+      return `
       <div class="suits">
         ${symbols}
       </div>
     `;
-  }).join('');
+    })
+    .join('');
 }
 
 function createCards() {
@@ -59,7 +61,10 @@ function createCards() {
   suits.forEach((suit) => {
     for (let i = 1; i <= 13; i += 1) {
       const valueMapping = {
-        1: 'A', 11: 'J', 12: 'Q', 13: 'K',
+        1: 'A',
+        11: 'J',
+        12: 'Q',
+        13: 'K',
       };
 
       const cardObject = {
@@ -88,7 +93,12 @@ function createCards() {
         <span class="value">${card.value}</span> ${card.suit}
       </div>
     `;
-
+    cardElement.onclick = (e) => {
+      if (!selectedCardsWrapper.children.length) {
+        selectedCardsWrapper.appendChild(e.currentTarget);
+        e.currentTarget.style = '';
+      }
+    };
     cardsWrapper.append(cardElement);
   });
 }
@@ -130,10 +140,39 @@ function createButtons() {
 
   // create the `Magic` button
   const magicBtn = document.createElement('button');
-  magicBtn.classList.add('btn', 'btn-lg', 'btn-secondary');
+  magicBtn.classList.add('btn', 'btn-lg', 'btn-secondary', 'mr-3');
   magicBtn.innerText = 'Magic';
   magicBtn.addEventListener('click', () => {
     cardsWrapper.classList.add('shuffling');
+    const selectedCard = document.querySelector('.selected-cards .card');
+    if (selectedCard) {
+      const val = selectedCard.getAttribute('data-value');
+      document.querySelectorAll(`.cards-wrapper [data-value="${val}"]`).forEach((card, i) => {
+        const positionFromLeft = (i + 1) * 40;
+        card.style.left = `${positionFromLeft}px`;
+        selectedCardsWrapper.appendChild(card);
+      });
+    }
+    const hearts = sortCards([...document.querySelectorAll('.cards-wrapper .♥')]);
+    const spades = sortCards([...document.querySelectorAll('.cards-wrapper .♠')]);
+    const clubs = sortCards([...document.querySelectorAll('.cards-wrapper .♣')]);
+    const diamonds = sortCards([...document.querySelectorAll('.cards-wrapper .♦')]);
+    setTimeout(() => {
+      reRenderCards([...hearts, ...spades, ...diamonds, ...clubs]);
+    }, 1000);
+
+    setTimeout(() => {
+      cardsWrapper.classList.remove('shuffling');
+    }, 1500);
+  });
+
+  // Create reset button
+  const resetBtn = document.createElement('button');
+  resetBtn.classList.add('btn', 'btn-lg', 'btn-secondary');
+  resetBtn.innerText = 'Reset';
+  resetBtn.addEventListener('click', () => {
+    cardsWrapper.classList.add('shuffling');
+    selectedCardsWrapper.innerHTML = '';
     const hearts = sortCards([...document.querySelectorAll('.♥')]);
     const spades = sortCards([...document.querySelectorAll('.♠')]);
     const clubs = sortCards([...document.querySelectorAll('.♣')]);
@@ -151,6 +190,7 @@ function createButtons() {
   btnWrapper.appendChild(shuffleBtn);
   btnWrapper.appendChild(showHideBtn);
   btnWrapper.appendChild(magicBtn);
+  btnWrapper.appendChild(resetBtn);
 }
 
 // Function to start the game by clearing the wrapper, creating
